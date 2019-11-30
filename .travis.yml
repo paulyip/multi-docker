@@ -1,0 +1,20 @@
+sudo: required
+services:
+ - docker
+before_install:
+ - docker build -t paulyip/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+ - docker run paulyip/react-test npm test -- --coverage
+
+after_success:
+ - docker build -t paulyip/multi-client ./client
+ - docker build -t paulyip/multi-nginx ./nginx
+ - docker build -t paulyip/multi-server ./server
+ - docker build -t paulyip/multi-worker ./worker
+ - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+ - docker push paulyip/multi-client
+ - docker push paulyip/multi-nginx
+ - docker push paulyip/multi-server
+ - docker push paulyip/multi-worker
+ 
