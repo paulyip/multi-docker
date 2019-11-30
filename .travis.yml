@@ -12,7 +12,7 @@ after_success:
  - docker build -t paulyip/multi-nginx ./nginx
  - docker build -t paulyip/multi-server ./server
  - docker build -t paulyip/multi-worker ./worker
- - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+ - echo "$DOCKER_PASSWORD1" | docker login -u "$DOCKER_ID" --password-stdin
  - docker push paulyip/multi-client
  - docker push paulyip/multi-nginx
  - docker push paulyip/multi-server
