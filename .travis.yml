@@ -8,13 +8,13 @@ script:
  - docker run paulyip/react-test npm test -- --coverage
 
 after_success:
- - docker build -t paulyip/multi-client ./client
- - docker build -t paulyip/multi-nginx ./nginx
- - docker build -t paulyip/multi-server ./server
- - docker build -t paulyip/multi-worker ./worker
- - echo "$DOCKER_PASSWORD1" | docker login -u "$DOCKER_ID" --password-stdin
- - docker push paulyip/multi-client
- - docker push paulyip/multi-nginx
- - docker push paulyip/multi-server
- - docker push paulyip/multi-worker
+ - docker build -t paulyip34/multi-client ./client
+ - docker build -t paulyip34/multi-nginx ./nginx
+ - docker build -t paulyip34/multi-server ./server
+ - docker build -t paulyip34/multi-worker ./worker
+ - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+ - docker push paulyip34/multi-client
+ - docker push paulyip34/multi-nginx
+ - docker push paulyip34/multi-server
+ - docker push paulyip34/multi-worker
  
